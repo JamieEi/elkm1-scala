@@ -1,7 +1,7 @@
 package org.jamieei.elk
 
 import java.io._
-import java.net._
+import java.net.Socket
 
 object Main {
   def main(args: Array[String]) {
@@ -16,6 +16,7 @@ object Main {
 
     val socket = new Socket(ip, port)
     try {
+      socket.setSoTimeout(100);
       val out = new PrintWriter(socket.getOutputStream, true)
       val isr = new InputStreamReader(socket.getInputStream)
       val in = new BufferedReader(isr)
@@ -23,10 +24,15 @@ object Main {
       println("SEND: " + msg)
       out.print(msg + "\r\n")
 
-      Thread.sleep(1000)
-
-      val response = in.readLine
-      println("RESPONSE: " + response)
+      println("Reading response. Hit any key to break...")
+      do {
+        try {
+          val response = in.readLine
+          println("RESPONSE: " + response)
+        } catch {
+          case ioe: IOException => 
+        }
+      } while (!scala.Console.in.ready)
 
       socket.shutdownOutput
       out.close
