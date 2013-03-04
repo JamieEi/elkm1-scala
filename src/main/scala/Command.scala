@@ -6,7 +6,11 @@ object Command {
   val LINE = """\s*(\p{Alpha}\p{Alnum})\s+\W+\s*(\S[\p{Graph}\s]+)""".r
   val commands = loadCommands
 
-  def apply(code: String): Command = commands(code)
+  def apply(code: String): Command = {
+    val cmd = commands.get(code)
+    if (cmd.isEmpty) throw new IllegalArgumentException(s"Command not found: $code")
+    cmd.get
+  }
 
   def parse(line: String): Command = {
     val LINE(code, desc) = line
