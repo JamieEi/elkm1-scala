@@ -12,8 +12,8 @@ object Main {
 
     //val msg = "09sp12300BE" // phrase 123
     //val msg = "09ld00100D6" // request system log data
-    val msg = new Message('s', 'p', "123").packetString // say phrase 123
-    //val msg = new Message('a', '1', "100" + code).packetString // arm away
+    val msg = Message("sp", "123").packetString // say phrase 123
+    //val msg = Message("a1", "100" + code).packetString // arm away
     //val msg = "0Da11001234003F"
     val socket = new Socket(ip, port)
     try {

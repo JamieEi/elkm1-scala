@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers
 
 class MessageSuite extends FunSuite with ShouldMatchers {
-  val SAY_PHRASE_123 = new Message('s', 'p', "123") // "09sp12300BE"
+  val SAY_PHRASE_123 = Message("sp", "123") // "09sp12300BE"
   val SAY_PHRASE_123_STR = "09sp12300BE"
   val ARM_AWAY_1234 = "Da11001234003F"
 
