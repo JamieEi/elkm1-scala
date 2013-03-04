@@ -38,15 +38,15 @@ cx – Write counter value
 dm – Display message
 ds – Lighting Poll Request
 DS – Lighting Poll Response
-DK- Display KP LCD Data, not used
+DK - Display KP LCD Data, not used
 EE – Entry/Exit Time Data
 EM – Email Trigger to M1XEP
 IC – Send invalid user code digits
 IE – Installer program exited
-IP- M1XSP Insteon Program
-ip- M1XSP Insteon Program
-IR- M1XSP Insteon Read
-ir- M1XSP Insteon Read
+IP - M1XSP Insteon Program
+ip - M1XSP Insteon Program
+IR - M1XSP Insteon Read
+ir - M1XSP Insteon Read
 ka – Request keypad areas
 KA – Keypad areas report data
 kc – Request F Key illumination status

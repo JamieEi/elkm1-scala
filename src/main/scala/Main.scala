@@ -13,30 +13,31 @@ object Main {
     //val msg = "09sp12300BE" // phrase 123
     //val msg = "09ld00100D6" // request system log data
     val msg = new Message('s', 'p', "123").packetString // say phrase 123
-    //val msg = new Message('a', '2', "100" + code).packetString // arm away
-
+    //val msg = new Message('a', '1', "100" + code).packetString // arm away
+    //val msg = "0Da11001234003F"
     val socket = new Socket(ip, port)
     try {
-      socket.setSoTimeout(1000);
+      socket.setSoTimeout(500);
       val out = new PrintWriter(socket.getOutputStream, true)
-      val isr = new InputStreamReader(socket.getInputStream)
-      val in = new BufferedReader(isr)
       println("SEND: " + msg)
       out.print(msg + "\r\n")
-      //out.close
+      out.flush
 
+      val isr = new InputStreamReader(socket.getInputStream)
+      val in = new BufferedReader(isr)
       println("Reading response. Hit any key to break...")
       do {
         try {
           val response = in.readLine
           println("RESPONSE: " + response)
         } catch {
-          case ex: IOException => println(ex.getMessage)
+          case ex: IOException =>
         }
       } while (!scala.Console.in.ready)
-      //socket.shutdownOutput
-      //in.close
 
+      socket.shutdownOutput
+      out.close
+      in.close
       println("Done!")
     } finally {
       socket.close
