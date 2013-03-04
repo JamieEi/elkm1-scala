@@ -29,5 +29,9 @@ class CommandSuite extends FunSuite with ShouldMatchers {
     cmd.code should equal ("a0")
     cmd.description should equal ("Disarm")
   }
+
+  test("apply w/ bad code") {
+    intercept[IllegalArgumentException] { Command("xyz") }
+  }
 }
 
