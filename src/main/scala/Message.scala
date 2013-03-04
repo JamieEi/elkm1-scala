@@ -1,13 +1,8 @@
 package org.jamieei.elk
 
 object Message {
-  val HEX = """[\dA-Z]"""
-  val ALPHA = """[A-Za-z]"""
-  val ALPHA_DIGIT = """[\dA-Za-z]"""
-  val ASCII = """\p{Print}"""
-
   def apply(messageString: String) = {
-    val fmt = s"""($HEX{2})($ALPHA)($ALPHA_DIGIT)($ASCII*)00($HEX{2})""".r
+    val fmt = """([\dA-F]{2})(\p{Alpha})(\p{Alnum})(\p{Print}*)00([\dA-F]{2})""".r
     val fmt(packetLength, messageType, subMessageType, data, checksum) = messageString
     val msg = new Message(messageType(0), subMessageType(0), data)
 
