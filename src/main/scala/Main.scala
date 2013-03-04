@@ -10,20 +10,20 @@ object Main {
     val code = sys.env("ELK_CODE")
     println(s"Connecting to ELK at $ip:$port using code $code")
 
-    val msg = "09sp12300BE" // phrase 123
+    //val msg = "09sp12300BE" // phrase 123
     //val msg = "09ld00100D6" // request system log data
-    //val msg = new Message('s', 'p', "123").packetString
-    //val msg = new Message('a', '1', "00" + code).packetString
+    val msg = new Message('s', 'p', "123").packetString // say phrase 123
+    //val msg = new Message('a', '2', "100" + code).packetString // arm away
 
     val socket = new Socket(ip, port)
     try {
-      socket.setSoTimeout(100);
+      socket.setSoTimeout(1000);
       val out = new PrintWriter(socket.getOutputStream, true)
       val isr = new InputStreamReader(socket.getInputStream)
       val in = new BufferedReader(isr)
-
       println("SEND: " + msg)
       out.print(msg + "\r\n")
+      //out.close
 
       println("Reading response. Hit any key to break...")
       do {
@@ -31,13 +31,12 @@ object Main {
           val response = in.readLine
           println("RESPONSE: " + response)
         } catch {
-          case ioe: IOException => 
+          case ex: IOException => println(ex.getMessage)
         }
       } while (!scala.Console.in.ready)
+      //socket.shutdownOutput
+      //in.close
 
-      socket.shutdownOutput
-      out.close
-      in.close
       println("Done!")
     } finally {
       socket.close
