@@ -29,9 +29,17 @@ object Main {
       do {
         try {
           val response = in.readLine
-          println("RESPONSE: " + response)
+          val msg = Message(response)
+          msg.command.code match {
+            case "XK" => // ethernet test
+            case _ => println(s"$msg [$response]")
+          }
         } catch {
-          case ex: IOException =>
+          case ex: IOException => // expect "Read timed out"
+          case ex: Exception => {
+            println(s"(EE) $ex")
+            ex.printStackTrace
+          }
         }
       } while (!scala.Console.in.ready)
 
