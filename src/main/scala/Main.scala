@@ -10,9 +10,9 @@ object Main {
     val code = sys.env("ELK_CODE")
     println(s"Connecting to ELK at $ip:$port using code $code")
 
-    //val msg = "09sp12300BE" // phrase 123
+    val msg = "09sp12300BE" // phrase 123
     //val msg = "09ld00100D6" // request system log data
-    val msg = Message("sp", "123").packetString // say phrase 123
+    //val msg = Message("sp", "123").packetString // say phrase 123
     //val msg = Message("a1", "100" + code).packetString // arm away
     //val msg = "0Da11001234003F"
     val socket = new Socket(ip, port)
