@@ -1,55 +1,16 @@
 package org.jamieei.elk.util
 
-import org.jamieei.elk.util.StringSplitter.PartialResult
 import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers
 
 class StringSplitterSuite extends FunSuite with ShouldMatchers {
-  test("splitLeft, empty") {
-    val ss = new StringSplitter(List(), List())
-    ss.splitLeft("") should equal (PartialResult(List()))
-    ss.splitLeft("abc") should equal (PartialResult(List(), "abc"))
-  }
-
-  test("splitLeft, one part") {
-    val ss = new StringSplitter(List(1), List())
-    ss.splitLeft("") should equal (PartialResult(List()))
-    ss.splitLeft("abc") should equal (PartialResult(List("a"), "bc"))
-  }
-
-  test("splitLeft, two parts") {
-    val ss = new StringSplitter(List(1, 2), List())
-    ss.splitLeft("") should equal (PartialResult(List()))
-    ss.splitLeft("abc") should equal (PartialResult(List("a", "bc"), ""))
-    ss.splitLeft("abcd") should equal (PartialResult(List("a", "bc"), "d"))
-  }
-
-  test("splitRight, empty") {
-    val ss = new StringSplitter(List(), List())
-    ss.splitRight("") should equal (PartialResult(List()))
-    ss.splitRight("abc") should equal (PartialResult(List(), "abc"))
-  }
-
-  test("splitRight, one part") {
-    val ss = new StringSplitter(List(), List(1))
-    ss.splitRight("") should equal (PartialResult(List()))
-    ss.splitRight("abc") should equal (PartialResult(List("c"), "ab"))
-  }
-
-  test("splitRight, two parts") {
-    val ss = new StringSplitter(List(), List(1, 2))
-    ss.splitRight("") should equal (PartialResult(List()))
-    ss.splitRight("abc") should equal (PartialResult(List("a", "bc"), ""))
-    ss.splitRight("abcd") should equal (PartialResult(List("b", "cd"), "a"))
-  }
-
-  test("split, empty") {
+  test("split empty string") {
     val ss = new StringSplitter(List(), List())
     ss.split("") should equal (List())
     ss.split("abc") should equal (List("abc"))
   }
 
-  test("split, left only") {
+  test("split left only string") {
     val ss = new StringSplitter(List(1, 2), List())
     ss.split("") should equal (List())
     ss.split("a") should equal (List("a"))
@@ -57,7 +18,7 @@ class StringSplitterSuite extends FunSuite with ShouldMatchers {
     ss.split("abcdef") should equal (List("a", "bc", "def"))
   }
 
-  test("split, right only") {
+  test("split right only string") {
     val ss = new StringSplitter(List(), List(1, 2))
     ss.split("") should equal (List())
     ss.split("a") should equal (List("a"))
@@ -65,11 +26,16 @@ class StringSplitterSuite extends FunSuite with ShouldMatchers {
     ss.split("abcdef") should equal (List("abc", "d", "ef"))
   }
 
-  test("split, left and right") {
+  test("split left and right string") {
     val ss = new StringSplitter(List(1, 2), List(1, 2))
     ss.split("") should equal (List())
     ss.split("abcdef") should equal (List("a", "bc", "d", "ef"))
     ss.split("abcdefghi") should equal (List("a", "bc", "def", "g", "hi"))
+  }
+
+  test("scaladoc example(s)") {
+    val ss = new StringSplitter(List(5, 2), List(3))
+    ss.split("Luckyisadog") should equal (List("Lucky", "is", "a", "dog"))
   }
 }
 

@@ -1,48 +1,27 @@
 package org.jamieei.elk.util
 
-object StringSplitter {
-  object PartialResult {
-    def apply(str: String): PartialResult = new PartialResult(List[String](), str)
-    def apply(res: List[String]): PartialResult = new PartialResult(res, "")
-  }
-
-  case class PartialResult(val result: List[String], val remainder: String) {
-    override def toString: String = s"""($result, "$remainder")"""
-    def reverse: PartialResult = new PartialResult(result.reverse, remainder)
-  }
-}
-
+/**
+ * Splits a string into multiple fixed-length parts and a single variable-length remainder.
+ * @constructor Creates a new StringSplitter instance.
+ * @param leftLengths Length of parts to the left of the remainder.
+ * @param rightLengths Length of parts to the right of the remainder.
+ * @example new StringSplitter(List(5, 2), List(3)).split("Luckyisadog") => List("Lucky", "is", "a", "dog")
+ */
 class StringSplitter(leftLengths: List[Int], rightLengths: List[Int]) {
-  import StringSplitter.PartialResult
+  private val specLength = leftLengths.sum + rightLengths.sum
 
   def split(str: String): List[String] = {
-    val left = splitLeft(str)
-    val right = splitRight(left.remainder)
-    left.result ++ prependUnlessEmpty(right.remainder, right.result)
-  }
+    // Merge the left and right lengths with the implicit middle length
+    val midLength = str.length - specLength
+    val lengths = leftLengths ++ (midLength :: rightLengths)
 
-  def splitLeft(str: String): PartialResult = {
-    val acc = PartialResult(str)
-    leftLengths.foldLeft(acc)((acc, len) => {
-      val (part, rem) = acc.remainder.splitAt(len)
-      val res = prependUnlessEmpty(part, acc.result)
-      new PartialResult(res, rem)
-    }).reverse
-  }
-
-  def splitRight(str: String): PartialResult = {
-    val acc = PartialResult(str)
-    rightLengths.foldRight(acc)((len, acc) => {
-      val (rem, part) = acc.remainder.splitAt(acc.remainder.length - len)
-      val res = prependUnlessEmpty(part, acc.result)
-      new PartialResult(res, rem)
-    })
-  }
-
-  private def calcResult(acc: PartialResult, len: Int): PartialResult = {
-    val (part, rem) = acc.remainder.splitAt(len)
-    val res = prependUnlessEmpty(part, acc.result)
-    new PartialResult(res, rem)
+    // Split the string
+    val acc = (List[String](), str)
+    lengths.foldLeft(acc)((acc, len) => {
+      val (part, rem) = acc._2.splitAt(len)
+      val res = prependUnlessEmpty(part, acc._1)
+      (res, rem)
+    })._1.reverse
   }
 
   private def prependUnlessEmpty(x: String, xs: List[String]) = if (x.isEmpty) xs else x :: xs
