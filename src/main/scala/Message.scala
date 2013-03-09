@@ -26,42 +26,14 @@ trait Message {
   def packetString: String
   def command: Command
   def data: String
-  def validate: ValidationResult
-
-  case class ValidationResult(val isValid: Boolean, val reason: Option[String])
-  protected val ValidationSuccess = new ValidationResult(true, None)
-  object ValidationFailure {
-    def apply(reason: String) = new ValidationResult(false, Some(reason))
-  }
-
-  lazy val isValid: Boolean = validate.isValid
-
-  /*
-  def packetLength: Int
-  def messageType: Character
-  def subMessageType: Character
-  def reserved: String
-  def checksum: String
-
-  def messageSum: Int = packetStringWithoutChecksum.foldLeft(0)(_ + _.toInt)
-  def checksum: Int = (255 - messageSum % 256) + 1
-  */
 }
 
 class ParsedMessage(val packetString: String) extends Message {
   import Message._
 
-  val List(packetLengthString, code, data, _, checksumString) = new StringSplitter(List(2, 2), List(2, 2)).split(packetString)
+  private val ss = new StringSplitter(List(2, 2), List(2, 2))
+  val List(packetLengthString, code, data, _, checksumString) = ss.split(packetString)
   lazy val command = Command(code)
-
-  def validate: ValidationResult = {
-    try {
-      if (packetLength != 
-      ValidationSuccess
-    } catch {
-      case e: RuntimeException => ValidationFailure("Unexpected error during validation: " + ex.getMessage)
-    }
-  }
 }
 
 class SyntheticMessage(val command: Command, val data: String) extends Message {
@@ -71,6 +43,5 @@ class SyntheticMessage(val command: Command, val data: String) extends Message {
   private val packetStringWithoutChecksum: String = "%02X".format(packetLength) + command.code + data + "00"
   private val checksumString: String = "%02X".format(Message.checksum(packetStringWithoutChecksum))
   val packetString: String = packetStringWithoutChecksum + checksumString
-  val validate = ValidationSuccess
 }
 
