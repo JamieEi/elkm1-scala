@@ -3,14 +3,16 @@ package org.jamieei.elk
 import scala.io.Source
 
 object Command {
-  val LINE = """\s*(\p{Alpha}\p{Alnum})\s+\W+\s*(\S[\p{Graph}\s]+)""".r
-  val commands = loadCommands
+  private val LINE = """\s*(\p{Alpha}\p{Alnum})\s+\W+\s*(\S[\p{Graph}\s]+)""".r
+  private val commands = loadCommands
 
   def apply(code: String): Command = {
     val cmd = commands.get(code)
     if (cmd.isEmpty) throw new IllegalArgumentException(s"Command not found: $code")
     cmd.get
   }
+
+  def unapply(cmd: Command): String = cmd.code
 
   def parse(line: String): Command = {
     val LINE(code, desc) = line
