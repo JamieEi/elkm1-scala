@@ -12,6 +12,7 @@ class MessageSuite extends FunSuite with ShouldMatchers {
     msg.packetString should equal (SAY_PHRASE_123)
     msg.command should equal (Command("sp"))
     msg.data should equal ("123")
+    assert(msg.isValid)
   }
 
   test("synthesize message") {
@@ -19,6 +20,13 @@ class MessageSuite extends FunSuite with ShouldMatchers {
     msg.packetString should equal (SAY_PHRASE_123)
     msg.command should equal (Command("sp"))
     msg.data should equal ("123")
+    assert(msg.isValid)
+  }
+
+  test("checksum") {
+    val checksum = Message.checksum(SAY_PHRASE_123.dropRight(2))
+    val exp = Integer.valueOf(SAY_PHRASE_123.takeRight(2), 16)
+    checksum should equal (exp)
   }
 }
 
