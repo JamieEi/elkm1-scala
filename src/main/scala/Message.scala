@@ -26,6 +26,7 @@ trait Message {
   def packetString: String
   def command: Command
   def data: String
+  override def toString: String = s"${command.description} $data [$packetString]"
 }
 
 class ParsedMessage(val packetString: String) extends Message {
