@@ -28,3 +28,14 @@ object Command {
 
 class Command(val code: String, val description: String) {
 }
+
+// 2nd attempt
+
+sealed abstract class Command2(code: String) extends Command2.Value {
+  def description: String = "foo" //description(code)
+}
+
+object Command2 extends Enum[Command2] {
+  case object SPEAK_PHRASE extends Command2("xx")
+}
+
