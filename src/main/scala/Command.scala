@@ -3,39 +3,42 @@ package org.jamieei.elk
 import scala.io.Source
 
 object Command {
-  private val LINE = """\s*(\p{Alpha}\p{Alnum})\s+\W+\s*(\S[\p{Graph}\s]+)""".r
-  private val commands = loadCommands
+  private val codesToDescriptions: Map[String, String] = loadCommands
 
   def apply(code: String): Command = {
-    val cmd = commands.get(code)
-    if (cmd.isEmpty) throw new IllegalArgumentException(s"Command not found: $code")
-    cmd.get
+    new UnknownCommand(code)
   }
 
   def unapply(cmd: Command): String = cmd.code
 
-  def parse(line: String): Command = {
-    val LINE(code, desc) = line
-    new Command(code, desc.trim)
+  def parse(line: String): (String, String) = {
+    val pat = """\s*(\p{Alpha}\p{Alnum})\s+\W+\s*(\S[\p{Graph}\s]+)""".r
+    val pat(code, desc) = line
+    (code, desc.trim)
   }
 
-  def loadCommands = {
+  def loadCommands: Map[String, String] = {
     val res = getClass.getResource("/commands")
     val source = Source.fromURL(res)
-    source.getLines.map(parse(_)).map((c) => (c.code, c)).toMap
+    source.getLines.map(parse(_)).toMap
   }
+
+  def description(code: String): Option[String] = codesToDescriptions.get(code)
+
+  case object Heartbeat extends KnownCommand("XK")
+  case object SayPhrase extends KnownCommand("sp")
 }
 
-class Command(val code: String, val description: String) {
+trait Command {
+  def code: String
+  def description: String = Command.description(code).getOrElse(UnknownCommand.Description)
 }
 
-// 2nd attempt
+object KnownCommand extends Enum[KnownCommand]
+sealed abstract class KnownCommand(val code: String) extends KnownCommand.Value with Command
 
-sealed abstract class Command2(code: String) extends Command2.Value {
-  def description: String = "foo" //description(code)
+object UnknownCommand {
+  val Description = "<unknown>"
 }
 
-object Command2 extends Enum[Command2] {
-  case object SPEAK_PHRASE extends Command2("xx")
-}
-
+class UnknownCommand(val code: String) extends Command

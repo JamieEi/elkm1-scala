@@ -5,23 +5,23 @@ import org.scalatest.matchers.ShouldMatchers
 
 class CommandSuite extends FunSuite with ShouldMatchers {
   test("parse commands line") {
-    val cmd = Command.parse("ab - Some command")
-    cmd.code should equal ("ab")
-    cmd.description should equal ("Some command")
+    val (code, desc) = Command.parse("ab - Some command")
+    code should equal ("ab")
+    desc should equal ("Some command")
   }
 
   test("parse with number") {
-    val cmd = Command.parse("a0 – Disarm")
-    cmd.code should equal ("a0")
-    cmd.description should equal ("Disarm")
+    val (code, desc) = Command.parse("a0 – Disarm")
+    code should equal ("a0")
+    desc should equal ("Disarm")
   }
 
   test("loadCommands") {
     val commands = Command.loadCommands
     commands.size should equal (108)
 
-    val cmd = commands("IR")
-    commands("IR").description should equal ("M1XSP Insteon Read")
+    val desc = commands("IR")
+    desc should equal ("M1XSP Insteon Read")
   }
 
   test("apply") {
@@ -31,7 +31,9 @@ class CommandSuite extends FunSuite with ShouldMatchers {
   }
 
   test("apply w/ bad code") {
-    intercept[IllegalArgumentException] { Command("xyz") }
+    val cmd = Command("xyz") 
+    cmd.code should equal ("xyz")
+    cmd.description should equal (UnknownCommand.Description)
   }
 }
 

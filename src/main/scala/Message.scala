@@ -4,10 +4,8 @@ import org.jamieei.elk.util._
 
 object Message {
   def apply(packetString: String): Message = new ParsedMessage(packetString)
-  def apply(code: String, data: String): Message = {
-    val cmd = Command(code)
-    new SyntheticMessage(cmd, data)
-  }
+  def apply(code: String, data: String): Message = apply(Command(code), data)
+  def apply(cmd: Command, data: String): Message = new SyntheticMessage(cmd, data)
 
   def checksum(msg: String): Int = {
     val sumOfChars = msg.foldLeft(0)(_ + _.toInt)
