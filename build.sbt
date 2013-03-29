@@ -6,5 +6,6 @@ scalaVersion := "2.10.1"
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "1.9.1" % "test",
-  "org.apache.commons" % "commons-email" % "1.3"
+  "org.apache.commons" % "commons-email" % "1.3",
+  "org.apache.commons" % "commons-lang3" % "3.1"
 )
