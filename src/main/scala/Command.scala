@@ -23,10 +23,8 @@ object Command {
     source.getLines.map(parse(_)).toMap
   }
   
-
   def description(code: String): Option[String] = codesToDescriptions.get(code)
 
-  def  
   def genKnownCommands: List[String] = {
   }
 
@@ -50,94 +48,94 @@ object Command {
   case object AlarmByZoneReply extends KnownCommand("AZ") // Alarm by zone reply
   case object TouchscreenAudioRequest extends KnownCommand("ca") // Request Touchscreen audio command
   case object TouchscreenAudioReply extends KnownCommand("CA") // Reply Touchscreen audio command
-  case object XYZ extends KnownCommand("CC") // Control output change update
-  case object XYZ extends KnownCommand("cd") // Incoming Audio Equip Command
-  case object XYZ extends KnownCommand("CD") // Outgoing Audio Equip Command
-  case object XYZ extends KnownCommand("cf") // Control output OFF
-  case object XYZ extends KnownCommand("cn") // Control output ON
-  case object XYZ extends KnownCommand("cp") // Request ALL custom values
-  case object XYZ extends KnownCommand("cr") // Request custom value
-  case object XYZ extends KnownCommand("CR") // Custom value report data
-  case object XYZ extends KnownCommand("cs") // Control output status request
-  case object XYZ extends KnownCommand("CS") // Control output status report data
-  case object XYZ extends KnownCommand("ct") // Control output TOGGLE
-  case object XYZ extends KnownCommand("cu") // Change user code request
-  case object XYZ extends KnownCommand("CU") // Change user code reply
-  case object XYZ extends KnownCommand("cw") // Write custom value data
-  case object XYZ extends KnownCommand("cv") // Request Counter value
-  case object XYZ extends KnownCommand("CV") // Counter Value Data
-  case object XYZ extends KnownCommand("cx") // Write counter value
-  case object XYZ extends KnownCommand("dm") // Display message
-  case object XYZ extends KnownCommand("ds") // Lighting Poll Request
-  case object XYZ extends KnownCommand("DS") // Lighting Poll Response
-  case object XYZ extends KnownCommand("DK") // Display KP LCD Data, not used
-  case object XYZ extends KnownCommand("EE") // Entry/Exit Time Data
-  case object XYZ extends KnownCommand("EM") // Email Trigger to M1XEP
-  case object XYZ extends KnownCommand("IC") // Send invalid user code digits
-  case object XYZ extends KnownCommand("IE") // Installer program exited
-  case object XYZ extends KnownCommand("IP") // M1XSP Insteon Program
-  case object XYZ extends KnownCommand("ip") // M1XSP Insteon Program
-  case object XYZ extends KnownCommand("IR") // M1XSP Insteon Read
-  case object XYZ extends KnownCommand("ir") // M1XSP Insteon Read
-  case object XYZ extends KnownCommand("ka") // Request keypad areas
-  case object XYZ extends KnownCommand("KA") // Keypad areas report data
-  case object XYZ extends KnownCommand("kc") // Request F Key illumination status
-  case object XYZ extends KnownCommand("KC") // Keypad key change update
-  case object XYZ extends KnownCommand("kf") // Request simulated function key press
-  case object XYZ extends KnownCommand("KF") // Function key pressed data
-  case object XYZ extends KnownCommand("LD") // Log data with index
-  case object XYZ extends KnownCommand("ld") // Request log data, with index
-  case object XYZ extends KnownCommand("le") // Write Log Data Entry
-  case object XYZ extends KnownCommand("lw") // Request temperature data
-  case object XYZ extends KnownCommand("LW") // Reply temperature data
-  case object XYZ extends KnownCommand("NS") // Reply Source Name
-  case object XYZ extends KnownCommand("NZ") // Reply Zone Name
-  case object XYZ extends KnownCommand("pc") // Control any PLC device
-  case object XYZ extends KnownCommand("PC") // PLC change update
-  case object XYZ extends KnownCommand("pf") // Turn OFF PLC device
-  case object XYZ extends KnownCommand("pn") // Turn ON PLC device
-  case object XYZ extends KnownCommand("ps") // Request PLC status
-  case object XYZ extends KnownCommand("PS") // PLC status report data
-  case object XYZ extends KnownCommand("pt") // Toggle PLC device
-  case object XYZ extends KnownCommand("RE") // Reset Ethernet Module
-  case object XYZ extends KnownCommand("RP") // ELKRP connected
-  case object XYZ extends KnownCommand("rr") // Request Real Time Clock Read
-  case object XYZ extends KnownCommand("RR") // Real Time Clock Data
-  case object XYZ extends KnownCommand("rs") // Used by Touchscreen
-  case object XYZ extends KnownCommand("rw") // Real Time Clock Write
-  case object XYZ extends KnownCommand("sd") // Request text string descriptions
-  case object XYZ extends KnownCommand("SD") // Text string description report data
-  case object XYZ extends KnownCommand("sp") // Speak phrase
-  case object XYZ extends KnownCommand("ss") // Request System Trouble Status
-  case object XYZ extends KnownCommand("SS") // System Trouble Status data
-  case object XYZ extends KnownCommand("st") // Request temperature
-  case object XYZ extends KnownCommand("ST") // Temperature report data
-  case object XYZ extends KnownCommand("sw") // Speak word
-  case object XYZ extends KnownCommand("t2") // Request Omnistat 2 data
-  case object XYZ extends KnownCommand("T2") // Reply Omnistat 2 data
-  case object XYZ extends KnownCommand("TC") // Task change update
-  case object XYZ extends KnownCommand("tn") // Task activation
-  case object XYZ extends KnownCommand("tr") // Request thermostat data
-  case object XYZ extends KnownCommand("TR") // Thermostat data report
-  case object XYZ extends KnownCommand("ts") // Set thermostat data
-  case object XYZ extends KnownCommand("ua") // Request user code areas
-  case object XYZ extends KnownCommand("UA") // User code areas report data
-  case object XYZ extends KnownCommand("vn") // request Version Number of M1
-  case object XYZ extends KnownCommand("VN") // Reply Version Number of M1
-  case object XYZ extends KnownCommand("XB") // reserved by ELKRP
-  case object XYZ extends KnownCommand("xk") // Reply from Ethernet test
-  case object XYZ extends KnownCommand("XK") // Request Ethernet test
-  case object XYZ extends KnownCommand("zb") // Zone bypass request
-  case object XYZ extends KnownCommand("ZB") // Zone bypass report data
-  case object XYZ extends KnownCommand("ZC") // Zone change update
-  case object XYZ extends KnownCommand("zd") // Request zone definition data
-  case object XYZ extends KnownCommand("ZD") // Zone definition report data
-  case object XYZ extends KnownCommand("zp") // Zone partition request
-  case object XYZ extends KnownCommand("ZP") // Zone partition report data
-  case object XYZ extends KnownCommand("zs") // Zone status request
-  case object XYZ extends KnownCommand("ZS") // Zone status report data
-  case object XYZ extends KnownCommand("zv") // Request Zone analog voltage
-  case object XYZ extends KnownCommand("ZV") // Zone analog voltage data
+  case object {{ControlOutputChangeUpdate}} extends KnownCommand("CC") // Control output change update
+  case object {{IncomingAudioEquip}} extends KnownCommand("cd") // Incoming Audio Equip Command
+  case object {{OutgoingAudioEquip}} extends KnownCommand("CD") // Outgoing Audio Equip Command
+  case object {{ControlOutputOff}} extends KnownCommand("cf") // Control output OFF
+  case object {{ControlOutputOn}} extends KnownCommand("cn") // Control output ON
+  case object {{RequestAllCustomValues}} extends KnownCommand("cp") // Request ALL custom values
+  case object {{RequestCustomValue}} extends KnownCommand("cr") // Request custom value
+  case object {{CustomValueReportData}} extends KnownCommand("CR") // Custom value report data
+  case object {{ControlOutputStatusRequest}} extends KnownCommand("cs") // Control output status request
+  case object {{ControlOutputStatusReportData}} extends KnownCommand("CS") // Control output status report data
+  case object {{ControlOutputToggle}} extends KnownCommand("ct") // Control output TOGGLE
+  case object {{ChangeUserCodeRequest}} extends KnownCommand("cu") // Change user code request
+  case object {{ChangeUserCodeReply}} extends KnownCommand("CU") // Change user code reply
+  case object {{Write custom value data}} extends KnownCommand("cw") // Write custom value data
+  case object {{Request Counter value}} extends KnownCommand("cv") // Request Counter value
+  case object {{Counter Value Data}} extends KnownCommand("CV") // Counter Value Data
+  case object {{Write counter value}} extends KnownCommand("cx") // Write counter value
+  case object {{Display message}} extends KnownCommand("dm") // Display message
+  case object {{Lighting Poll Request}} extends KnownCommand("ds") // Lighting Poll Request
+  case object {{Lighting Poll Response}} extends KnownCommand("DS") // Lighting Poll Response
+  case object {{Display KP LCD Data, not used}} extends KnownCommand("DK") // Display KP LCD Data, not used
+  case object {{Entry/Exit Time Data}} extends KnownCommand("EE") // Entry/Exit Time Data
+  case object {{Email Trigger to M1XEP}} extends KnownCommand("EM") // Email Trigger to M1XEP
+  case object {{Send invalid user code digits}} extends KnownCommand("IC") // Send invalid user code digits
+  case object {{Installer program exited}} extends KnownCommand("IE") // Installer program exited
+  case object {{M1XSP Insteon Program}} extends KnownCommand("IP") // M1XSP Insteon Program
+  case object {{M1XSP Insteon Program}} extends KnownCommand("ip") // M1XSP Insteon Program
+  case object {{M1XSP Insteon Read}} extends KnownCommand("IR") // M1XSP Insteon Read
+  case object {{M1XSP Insteon Read}} extends KnownCommand("ir") // M1XSP Insteon Read
+  case object {{Request keypad areas}} extends KnownCommand("ka") // Request keypad areas
+  case object {{Keypad areas report data}} extends KnownCommand("KA") // Keypad areas report data
+  case object {{Request F Key illumination status}} extends KnownCommand("kc") // Request F Key illumination status
+  case object {{Keypad key change update}} extends KnownCommand("KC") // Keypad key change update
+  case object {{Request simulated function key press}} extends KnownCommand("kf") // Request simulated function key press
+  case object {{Function key pressed data}} extends KnownCommand("KF") // Function key pressed data
+  case object {{Log data with index}} extends KnownCommand("LD") // Log data with index
+  case object {{Request log data, with index}} extends KnownCommand("ld") // Request log data, with index
+  case object {{Write Log Data Entry}} extends KnownCommand("le") // Write Log Data Entry
+  case object {{Request temperature data}} extends KnownCommand("lw") // Request temperature data
+  case object {{Reply temperature data}} extends KnownCommand("LW") // Reply temperature data
+  case object {{Reply Source Name}} extends KnownCommand("NS") // Reply Source Name
+  case object {{Reply Zone Name}} extends KnownCommand("NZ") // Reply Zone Name
+  case object {{Control any PLC device}} extends KnownCommand("pc") // Control any PLC device
+  case object {{PLC change update}} extends KnownCommand("PC") // PLC change update
+  case object {{Turn OFF PLC device}} extends KnownCommand("pf") // Turn OFF PLC device
+  case object {{Turn ON PLC device}} extends KnownCommand("pn") // Turn ON PLC device
+  case object {{Request PLC status}} extends KnownCommand("ps") // Request PLC status
+  case object {{PLC status report data}} extends KnownCommand("PS") // PLC status report data
+  case object {{Toggle PLC device}} extends KnownCommand("pt") // Toggle PLC device
+  case object {{Reset Ethernet Module}} extends KnownCommand("RE") // Reset Ethernet Module
+  case object {{ELKRP connected}} extends KnownCommand("RP") // ELKRP connected
+  case object {{Request Real Time Clock Read}} extends KnownCommand("rr") // Request Real Time Clock Read
+  case object {{Real Time Clock Data}} extends KnownCommand("RR") // Real Time Clock Data
+  case object {{Used by Touchscreen}} extends KnownCommand("rs") // Used by Touchscreen
+  case object {{Real Time Clock Write}} extends KnownCommand("rw") // Real Time Clock Write
+  case object {{Request text string descriptions}} extends KnownCommand("sd") // Request text string descriptions
+  case object {{Text string description report data}} extends KnownCommand("SD") // Text string description report data
+  case object {{Speak phrase}} extends KnownCommand("sp") // Speak phrase
+  case object {{Request System Trouble Status}} extends KnownCommand("ss") // Request System Trouble Status
+  case object {{System Trouble Status data}} extends KnownCommand("SS") // System Trouble Status data
+  case object {{Request temperature}} extends KnownCommand("st") // Request temperature
+  case object {{Temperature report data}} extends KnownCommand("ST") // Temperature report data
+  case object {{Speak word}} extends KnownCommand("sw") // Speak word
+  case object {{Request Omnistat 2 data}} extends KnownCommand("t2") // Request Omnistat 2 data
+  case object {{Reply Omnistat 2 data}} extends KnownCommand("T2") // Reply Omnistat 2 data
+  case object {{Task change update}} extends KnownCommand("TC") // Task change update
+  case object {{Task activation}} extends KnownCommand("tn") // Task activation
+  case object {{Request thermostat data}} extends KnownCommand("tr") // Request thermostat data
+  case object {{Thermostat data report}} extends KnownCommand("TR") // Thermostat data report
+  case object {{Set thermostat data}} extends KnownCommand("ts") // Set thermostat data
+  case object {{Request user code areas}} extends KnownCommand("ua") // Request user code areas
+  case object {{User code areas report data}} extends KnownCommand("UA") // User code areas report data
+  case object {{request Version Number of M1}} extends KnownCommand("vn") // request Version Number of M1
+  case object {{Reply Version Number of M1}} extends KnownCommand("VN") // Reply Version Number of M1
+  case object {{reserved by ELKRP}} extends KnownCommand("XB") // reserved by ELKRP
+  case object {{Reply from Ethernet test}} extends KnownCommand("xk") // Reply from Ethernet test
+  case object {{Request Ethernet test}} extends KnownCommand("XK") // Request Ethernet test
+  case object {{Zone bypass request}} extends KnownCommand("zb") // Zone bypass request
+  case object {{Zone bypass report data}} extends KnownCommand("ZB") // Zone bypass report data
+  case object {{Zone change update}} extends KnownCommand("ZC") // Zone change update
+  case object {{Request zone definition data}} extends KnownCommand("zd") // Request zone definition data
+  case object {{Zone definition report data}} extends KnownCommand("ZD") // Zone definition report data
+  case object {{Zone partition request}} extends KnownCommand("zp") // Zone partition request
+  case object {{Zone partition report data}} extends KnownCommand("ZP") // Zone partition report data
+  case object {{Zone status request}} extends KnownCommand("zs") // Zone status request
+  case object {{Zone status report data}} extends KnownCommand("ZS") // Zone status report data
+  case object {{Request Zone analog voltage}} extends KnownCommand("zv") // Request Zone analog voltage
+  case object {{Zone analog voltage data}} extends KnownCommand("ZV") // Zone analog voltage data
 }
 
 trait Command {
